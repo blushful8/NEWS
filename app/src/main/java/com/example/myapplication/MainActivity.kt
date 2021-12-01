@@ -2,10 +2,13 @@ package com.example.myapplication
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.LinearLayout
 import android.widget.ListView
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
 import io.reactivex.Completable.create
 import io.reactivex.Flowable.create
 import io.reactivex.Maybe.create
@@ -27,16 +30,23 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        recView = findViewById(R.id.act1_recView)
+//clickListener
 
-        listView = findViewById<ListView>(R.id.act1_listView)
+            val o = createRequest("https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Ftsn.ua%2Frss%2Ffull.rss")
+                .map { Gson().fromJson(it, Feed::class.java) }
+                .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
 
-        val o = createRequest("https://api.1plus1.video/v2/ua/recommendation_projects/116485?cid=DaUfBFgt&vct=3&_t402324231520.json")
-            .map {Gson().  }
-            .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+            request = o.subscribe({
+                                  showRecView(it.items)
+//                for (item in it.items)
+//                    Log.w("test", "title: ${item.title}")
+            },
+                {
+                    Log.e("TAG", "", it)
+                })
 
-        request = o.subscribe({
-            for(item in it.items)
-        })
+
 
     }
 
@@ -50,8 +60,10 @@ class MainActivity : AppCompatActivity() {
 //        }
 //    }
 
-    fun showListView(feedList: ArrayList<FeedItem>){
-        listView?.adapter = Adapter(feedList)
+    fun showRecView(feedList: ArrayList<FeedItem>){
+        recView?.adapter = RecAdapter(feedList)
+        recView?.layoutManager = LinearLayoutManager(this)
+
     }
 }
 //"data": [
