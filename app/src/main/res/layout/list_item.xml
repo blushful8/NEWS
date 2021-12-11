@@ -8,16 +8,36 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="wrap_content"
+        android:id="@+id/item_pubDate"
+        android:textStyle="bold"
+        android:layout_alignParentEnd="true"
+        android:lines="1"
+        android:textSize="16sp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true" />
 
+</RelativeLayout>
 
     <TextView
     android:layout_width="match_parent"
     android:id="@+id/item_title"
         android:textStyle="bold"
-        android:lines="5"
+        android:textColor="@color/black"
+        android:lines="2"
         android:textSize="16sp"
-            android:text="message &amp;quote string 1&amp; and &amp;quote string 2&amp; end message"
         android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:id="@+id/item_description"
+                android:textStyle="bold"
+                android:lines="3"
+                android:textSize="16sp"
+                android:layout_height="wrap_content"/>
 
 
         </LinearLayout>

@@ -1,5 +1,7 @@
 package com.example.myapplication
 
+import android.util.JsonReader
+import android.util.JsonWriter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewConfiguration.get
@@ -10,7 +12,12 @@ import android.widget.TextView
 import androidx.appcompat.view.ActionBarPolicy.get
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
-import com.squareup.picasso.Picasso
+import com.google.gson.GsonBuilder
+import com.google.gson.JsonArray
+import com.google.gson.JsonParser
+import org.json.JSONObject
+import org.json.JSONStringer
+
 
 class Adapter(val items: ArrayList<FeedItem>): BaseAdapter() {
     override fun getCount(): Int {
@@ -65,10 +72,14 @@ class RecAdapter(val items: ArrayList<FeedItem>):RecyclerView.Adapter<RecHolder>
 class RecHolder(view: View): RecyclerView.ViewHolder(view){
 fun bind(item:FeedItem){
     val vTitle = itemView.findViewById<TextView>(R.id.item_title)
+    val vDesc = itemView.findViewById<TextView>(R.id.item_description)
+    val vPubDate = itemView.findViewById<TextView>(R.id.item_pubDate)
     var s:String? = null
-    s = item.title
-    
+    s = item.title.toString().format("&amp;quot;","\"")
     vTitle.text = s
+    vDesc.text = item.description
+    vPubDate.text = item.pubDate
+
 
 }
 }
