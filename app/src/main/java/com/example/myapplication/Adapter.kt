@@ -1,7 +1,10 @@
 package com.example.myapplication
 
+import android.content.Context
+import android.content.Intent
 import android.util.JsonReader
 import android.util.JsonWriter
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewConfiguration.get
@@ -10,11 +13,13 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.view.ActionBarPolicy.get
+import androidx.core.text.parseAsHtml
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonArray
 import com.google.gson.JsonParser
+import com.squareup.picasso.Picasso
 import org.json.JSONObject
 import org.json.JSONStringer
 
@@ -74,11 +79,15 @@ fun bind(item:FeedItem){
     val vTitle = itemView.findViewById<TextView>(R.id.item_title)
     val vDesc = itemView.findViewById<TextView>(R.id.item_description)
     val vPubDate = itemView.findViewById<TextView>(R.id.item_pubDate)
-    var s:String? = null
-    s = item.title.toString().format("&amp;quot;","\"")
-    vTitle.text = s
+    val vEnclosure = itemView.findViewById<ImageView>(R.id.item_image)
+    val img = "https://telekritika.ua/tk-static/2019/04/tsn_1604.jpg"
+    Log.i("TAG", item.link.toString())
+
+    vTitle.text = item.title?.replace("&amp;quot;", "\"")
     vDesc.text = item.description
     vPubDate.text = item.pubDate
+
+    Picasso.with(vEnclosure.context).load(img).into(vEnclosure)
 
 
 }

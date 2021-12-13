@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -26,12 +27,16 @@ class MainActivity : AppCompatActivity() {
     var listView: ListView? = null
     var recView: RecyclerView? = null
     var request: Disposable? = null
+    val i = Intent()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         recView = findViewById(R.id.act1_recView)
-//clickListener
+
+        i.getStringExtra("link")
+        Log.i("LOG_I", i.toString())
+
 
             val o = createRequest("https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Ftsn.ua%2Frss%2Ffull.rss")
                 .map { Gson().fromJson(it, Feed::class.java) }
@@ -39,6 +44,8 @@ class MainActivity : AppCompatActivity() {
 
             request = o.subscribe({
                                   showRecView(it.items)
+                for(item in it.items)
+                    Log.i("test1", "link: ${item.link}")
 //                for (item in it.items)
 //                    Log.w("test", "title: ${item.title}")
             },

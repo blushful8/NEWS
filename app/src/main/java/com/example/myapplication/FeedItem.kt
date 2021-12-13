@@ -1,4 +1,5 @@
 package com.example.myapplication
 
-class FeedItem(val title: String, val link: String, val thumbnail: String, val description: String, val pubDate: String) {
+class FeedItem(val title: String? = null, val link: String? = null, val description: String? = null, val pubDate: String? = null) {
+
 }
