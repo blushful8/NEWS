@@ -26,6 +26,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val click = findViewById<FrameLayout>(R.id.frame)
+
+        click?.setOnClickListener {
+            Toast.makeText(this@MainActivity, "You clicked me.", Toast.LENGTH_SHORT).show()
+//            val i = Intent(this@MainActivity, ExtendNewsActivity::class.java)
+//            startActivity(i)
+        }
         recView = findViewById(R.id.act1_recView)
 
 
@@ -34,20 +40,17 @@ class MainActivity : AppCompatActivity() {
                 .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
 
             request = o.subscribe({
+                    val i = Intent()
                                   showRecView(it.items)
                 for(item in it.items)
-                    Log.i("test1", "link: ${item.link}")
+                    i.putExtra(item.link, "link")
 //                for (item in it.items)
 //                    Log.w("test", "title: ${item.title}")
             },
                 {
                     Log.e("TAG", "", it)
                 })
-        click?.setOnClickListener {
-            Toast.makeText(this@MainActivity, "You clicked me.", Toast.LENGTH_SHORT).show()
-val i = Intent(this@MainActivity, ExtendNewsActivity::class.java)
-            startActivity(i)
-        }
+
     }
 
 

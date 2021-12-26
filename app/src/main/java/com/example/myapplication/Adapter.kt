@@ -1,6 +1,8 @@
 package com.example.myapplication
 
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.view.menu.MenuView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import java.time.format.DateTimeFormatter
@@ -65,21 +68,24 @@ class RecAdapter(val items: ArrayList<FeedItem>):RecyclerView.Adapter<RecHolder>
 }
 
 class RecHolder(view: View): RecyclerView.ViewHolder(view){
+    val i = Intent(Intent.ACTION_VIEW)
+
 fun bind(item:FeedItem){
+    i.putExtra(item.link, "link")
     val vTitle = itemView.findViewById<TextView>(R.id.item_title)
     val vDesc = itemView.findViewById<TextView>(R.id.item_description)
     val vPubDate = itemView.findViewById<TextView>(R.id.item_pubDate)
     val vEnclosure = itemView.findViewById<ImageView>(R.id.item_image)
     val img = "https://telekritika.ua/tk-static/2019/04/tsn_1604.jpg"
-    Log.i("TAG", item.link.toString())
     val changeString:String = item.pubDate?.replaceBefore(' ', "").toString()
-
     vTitle.text = item.title?.replace("&amp;quot;", "\"")
     vDesc.text = item.description
     vPubDate.text = changeString
-
     Picasso.with(vEnclosure.context).load(img).into(vEnclosure)
 
-
+    itemView.setOnClickListener {
+        i.data = Uri.parse(item.link)
+        vEnclosure.context.startActivity(i)
+    }
 }
 }
