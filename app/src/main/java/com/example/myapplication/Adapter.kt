@@ -1,6 +1,7 @@
 package com.example.myapplication
 
 
+import android.os.Build
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
+import java.time.format.DateTimeFormatter
 
 
 class Adapter(val items: ArrayList<FeedItem>): BaseAdapter() {
@@ -70,10 +72,11 @@ fun bind(item:FeedItem){
     val vEnclosure = itemView.findViewById<ImageView>(R.id.item_image)
     val img = "https://telekritika.ua/tk-static/2019/04/tsn_1604.jpg"
     Log.i("TAG", item.link.toString())
+    val changeString:String = item.pubDate?.replaceBefore(' ', "").toString()
 
     vTitle.text = item.title?.replace("&amp;quot;", "\"")
     vDesc.text = item.description
-    vPubDate.text = item.pubDate
+    vPubDate.text = changeString
 
     Picasso.with(vEnclosure.context).load(img).into(vEnclosure)
 
