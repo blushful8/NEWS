@@ -1,27 +1,15 @@
 package com.example.myapplication
 
-import android.content.Context
-import android.content.Intent
-import android.util.JsonReader
-import android.util.JsonWriter
+
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewConfiguration.get
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.view.ActionBarPolicy.get
-import androidx.core.text.parseAsHtml
 import androidx.recyclerview.widget.RecyclerView
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import com.google.gson.JsonArray
-import com.google.gson.JsonParser
 import com.squareup.picasso.Picasso
-import org.json.JSONObject
-import org.json.JSONStringer
 
 
 class Adapter(val items: ArrayList<FeedItem>): BaseAdapter() {

@@ -22,9 +22,6 @@ import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
 
-    var text: TextView? = null
-    var lLayout: LinearLayout? = null
-    var listView: ListView? = null
     var recView: RecyclerView? = null
     var request: Disposable? = null
     val i = Intent()
