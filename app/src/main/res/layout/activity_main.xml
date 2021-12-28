@@ -1,14 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@drawable/gradient_red"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="50dp"
+           android:background="#975955"
+           android:gravity="center|left"
+           android:orientation="horizontal"
+           android:id="@+id/ln_layout">
+
+              <ImageView
+                  android:layout_width="50dp"
+                  android:layout_height="wrap_content"
+                  android:scaleType="fitStart"
+                  android:src="@mipmap/ic_launcher_round" />
+
+              <TextView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:paddingStart="16dp"
+                  android:text="@string/app_name"
+                  android:textColor="@color/white"
+                  android:textSize="20sp"
+                  android:textStyle="bold"
+                  tools:ignore="RtlSymmetry"
+                  android:paddingLeft="16dp" />
+       </LinearLayout>
+
 
        <androidx.recyclerview.widget.RecyclerView
            android:layout_width="match_parent"
            android:id="@+id/act1_recView"
            android:layout_height="wrap_content"
-           android:orientation="vertical"/>
-</FrameLayout>
+           android:orientation="vertical"
+           android:layout_below="@id/ln_layout"/>
+</RelativeLayout>

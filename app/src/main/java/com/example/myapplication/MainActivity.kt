@@ -25,13 +25,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val click = findViewById<FrameLayout>(R.id.frame)
-
-        click?.setOnClickListener {
-            Toast.makeText(this@MainActivity, "You clicked me.", Toast.LENGTH_SHORT).show()
-//            val i = Intent(this@MainActivity, ExtendNewsActivity::class.java)
-//            startActivity(i)
-        }
         recView = findViewById(R.id.act1_recView)
 
 
@@ -69,16 +62,3 @@ class MainActivity : AppCompatActivity() {
 
     }
 }
-//"data": [
-//        {
-//            "title": "Новини Сніданку з 1+1",
-//            "url": "https:\/\/1plus1.video\/novosti-snidanku-z-11",
-//            "img": "https:\/\/images.1plus1.video\/playlist-1\/103660\/67a7b3721302f293166c49487ac7099a.220x330.jpg",
-//            "pc": 0
-//        },
-//        {
-//            "title": "Автоновини",
-//            "url": "https:\/\/1plus1.video\/avtonovosti",
-//            "img": "https:\/\/images.1plus1.video\/playlist-1\/103762\/51380fcaca9441314f3ad1855462e962.220x330.jpg",
-//            "pc": 0
-//        },
