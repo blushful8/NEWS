@@ -78,7 +78,7 @@ fun bind(item:FeedItem){
     val vEnclosure = itemView.findViewById<ImageView>(R.id.item_image)
     val img = "https://telekritika.ua/tk-static/2019/04/tsn_1604.jpg"
     val changeString:String = item.pubDate?.replaceBefore(' ', "").toString()
-    vTitle.text = item.title?.replace("&amp;quot;", "\"")
+    vTitle.text = item.title?.replace("&amp;quot;", "\"")?.replace("&amp;#039;", "\'")
     vDesc.text = item.description
     vPubDate.text = changeString
     Picasso.with(vEnclosure.context).load(img).into(vEnclosure)
